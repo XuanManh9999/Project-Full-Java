@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp" %>
+<c:url var="buildingListURL" value="/admin/building-list"/>
 <html>
 <head>
     <title>Danh sách tòa nhà</title>
@@ -69,159 +70,223 @@
                     </div>
                     <div class="widget-body" style="display: block; margin: 15px 10px;">
                         <!-- content table -->
-                        <form class="form-group" method="get" action="" id="listForm">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Tên tòa nhà</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1"
-                                               placeholder="Nhập tên tòa nhà" name="nameBuilding">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Diện tích sàn</label>
-                                        <input type="number" class="form-control" id="exampleInputPassword1"
-                                               placeholder="Nhập diện tích sàn">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Quận hiện có</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="" selected>--Chọn quận</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Phường</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1"
-                                               placeholder="Nhập địa chỉ">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Đường</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1"
-                                               placeholder="Nhập địa chỉ">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Số tầng hầm</label>
-                                        <input type="number" class="form-control" id="exampleInputEmail1"
-                                               placeholder="Số tầng hầm">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Hướng</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1"
-                                               placeholder="Hướng">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Hạng</label>
-                                        <input type="number		" class="form-control" id="exampleInputPassword1"
-                                               placeholder="Hạng">
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
 
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Diện tích từ</label>
-                                        <input type="number" class="form-control" id="exampleInputEmail1"
-                                               placeholder="Diện tích từ">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Diện tích đến</label>
-                                        <input type="number" class="form-control" id="exampleInputEmail1"
-                                               placeholder="Diện tích đến">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Giá thuê từ</label>
-                                        <input type="number" class="form-control" id="exampleInputPassword1"
-                                               placeholder="Hướng">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Giá thuê đến</label>
-                                        <input type="number" class="form-control" id="exampleInputPassword1"
-                                               placeholder="Hạng">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Tên quản lý</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1"
-                                               placeholder="Tên quản lý">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Điện thoại quản lý</label>
-                                        <input type="number" class="form-control" id="exampleInputPassword1"
-                                               placeholder="Điện thoại quản lý">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Chọn nhận viên phụ trách</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="" selected>--Chọn nhân viên--</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row-sm">
-                                <label for="exampleInputPassword1">Tìm theo loại tòa nhà: </label>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <div style="display: flex; gap: 10px;">
-                                        <div
-                                                style="display:  flex; justify-content: center; align-items: center; gap: 3px;">
-                                            <input style="width: 20px ;height: 20px;" class="form-control"
-                                                   type="checkbox" id="test_check_block">
-                                            <span style="font-size: 15px; font-weight: bold;">Nội thất</span>
-                                        </div>
-                                        <div
-                                                style="display:  flex; justify-content: center; align-items: center; gap: 3px;">
-                                            <input style="width: 20px ;height: 20px;" type="checkbox">
-                                            <span style="font-size: 15px; font-weight: bold;">Tầng cao</span>
-                                        </div>
-                                        <div
-                                                style="display:  flex; justify-content: center; align-items: center; gap: 3px;">
-                                            <input style="width: 20px ;height: 20px;" type="checkbox">
-                                            <span style="font-size: 15px; font-weight: bold;">Nguyên căn</span>
+                            <form:form modelAttribute="modelSearch" action="${buildingListURL}" id="listForm"
+                                       method="get">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tên tòa nhà</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                   placeholder="Nhập tên tòa nhà" name="name"
+                                                   value="${modelSearch.name}">
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-danger" id="btnSearchBuilding"
-                                            style="width: 180px; height: 40px; border-radius: 10px; font-weight: bold; border: none; outline: none;">
-                                        <i class="ace-icon glyphicon glyphicon-search"></i>
-                                        Tìm kiếm
-                                    </button>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Diện tích sàn</label>
+                                            <input type="number" name="floorArea" class="form-control"
+                                                   id="exampleInputPassword1"
+                                                   placeholder="Nhập diện tích sàn"
+                                                   value="${modelSearch.floorArea}"
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Quận hiện có</label>
+                                            <select name="district" id="" class="form-control">
+                                                <option value="" selected>--Chọn quận</option>
+                                                <option value="quan-hoan-kiem" ${modelSearch.district == 'quan-hoan-kiem' ? 'selected' : ''}>
+                                                    Quận Hoàn Kiếm
+                                                </option>
+                                                <option value="quan-hai-ba-trung" ${modelSearch.district == 'quan-hai-ba-trung' ? 'selected' : ''}>
+                                                    Quận Hai Bà Trưng
+                                                </option>
+                                                <option value="quan-ba-vi" ${modelSearch.district == 'quan-ba-vi' ? 'selected' : ''}>
+                                                    Quận Ba Vì
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Phường</label>
+                                            <input name="ward" type="text" class="form-control"
+                                                   id="exampleInputPassword1"
+                                                   placeholder="Nhập địa chỉ"
+                                                   value="${modelSearch.ward}"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Đường</label>
+                                            <input type="text" name="street" class="form-control"
+                                                   id="exampleInputPassword1"
+                                                   placeholder="Nhập địa chỉ"
+                                                   value="${modelSearch.street}"
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Số tầng hầm</label>
+                                            <input type="number" class="form-control" name="numberOfBasement"
+                                                   id="exampleInputEmail1"
+                                                   placeholder="Số tầng hầm"
+                                                   value="${modelSearch.numberOfBasement}"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Hướng</label>
+                                            <input type="text" class="form-control" name="direction"
+                                                   id="exampleInputPassword1"
+                                                   placeholder="Hướng"
+                                                   value="${modelSearch.direction}"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Hạng</label>
+                                            <input type="number	" name="level" class="form-control"
+                                                   id="exampleInputPassword1"
+                                                   placeholder="Hạng"
+                                                   value="${modelSearch.level}"
+
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Diện tích từ</label>
+                                            <input type="number" class="form-control" name="areaForm"
+                                                   id="exampleInputEmail1"
+                                                   placeholder="Diện tích từ"
+                                                   value="${modelSearch.areaForm}"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Diện tích đến</label>
+
+                                                <%--                                            <input type="number" class="form-control" name="areaTo"--%>
+                                                <%--                                                   id="exampleInputEmail1"--%>
+                                                <%--                                                   placeholder="Diện tích đến"--%>
+                                                <%--                                                   value="${modelSearch.areaTo}"--%>
+                                                <%--                                            >--%>
+                                            <form:input type="number" lass="form-control" path="areaTo"
+                                                        placeholder="Diện tích đến"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Giá thuê từ</label>
+                                            <input type="number" class="form-control" name="rentPriceFrom"
+                                                   id="exampleInputPassword1"
+                                                   placeholder="Giá thuê từ"
+                                                   value="${modelSearch.rentPriceFrom}"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Giá thuê đến</label>
+                                            <input type="number" class="form-control" name="rentPriceTo"
+                                                   id="exampleInputPassword1"
+                                                   placeholder="Giá Thuê đến"
+                                                   value="${modelSearch.rentPriceTo}"
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tên quản lý</label>
+                                            <input type="text" class="form-control" name="managerName"
+                                                   id="exampleInputEmail1"
+                                                   placeholder="Tên quản lý"
+
+                                                   value="${modelSearch.managerName}"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Điện thoại quản lý</label>
+                                            <input type="number" class="form-control" name="managerPhone"
+                                                   id="exampleInputPassword1"
+                                                   placeholder="Điện thoại quản lý"
+                                                   value="${modelSearch.managerPhone}"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Chọn nhận viên phụ trách</label>
+                                            <select name="staff" id="" class="form-control">
+                                                <option value="" selected>--Chọn nhân viên--</option>
+                                                <option value="1" ${modelSearch.staff != null && modelSearch.staff.contains("1") ? 'selected' : ""} >
+                                                    Nguyễn Xuân Mạnh
+                                                </option>
+                                                <option value="2" ${modelSearch.staff != null && modelSearch.staff.contains("2") ? 'selected' : ""}>
+                                                    Lê Ngọc Anh
+                                                </option>
+                                                <option value="3" ${modelSearch.staff != null && modelSearch.staff.contains("3") ? 'selected' : ""}>
+                                                    Trịnh Minh Hả
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
 
                                 </div>
+                                <div class="row-sm">
+                                    <label for="exampleInputPassword1">Tìm theo loại tòa nhà: </label>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div style="display: flex; gap: 10px;">
+                                            <div style="display: flex; justify-content: center; align-items: center; gap: 3px;">
+                                                <input style="width: 20px; height: 20px;" class="form-control"
+                                                       name="typeCode" value="noi-that" type="checkbox"
+                                                       id="test_check_block"
+                                                    ${modelSearch.typeCode != null && modelSearch.typeCode.contains('noi-that') ? 'checked' : ''}>
+                                                <span style="font-size: 15px; font-weight: bold;">Nội thất</span>
+                                            </div>
+                                            <div style="display: flex; justify-content: center; align-items: center; gap: 3px;">
+                                                <input style="width: 20px; height: 20px;" type="checkbox"
+                                                       name="typeCode" value="tang-cao"
+                                                    ${modelSearch.typeCode != null && modelSearch.typeCode.contains('tang-cao') ? 'checked' : ''}>
+                                                <span style="font-size: 15px; font-weight: bold;">Tầng cao</span>
+                                            </div>
+                                            <div style="display: flex; justify-content: center; align-items: center; gap: 3px;">
+                                                <input style="width: 20px; height: 20px;" type="checkbox"
+                                                       name="typeCode" value="nguyen-can"
+                                                    ${modelSearch.typeCode != null && modelSearch.typeCode.contains('nguyen-can') ? 'checked' : ''}>
+                                                <span style="font-size: 15px; font-weight: bold;">Nguyên căn</span>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-danger" id="btnSearchBuilding"
+                                                style="width: 180px; height: 40px; border-radius: 10px; font-weight: bold; border: none; outline: none;">
+                                            <i class="ace-icon glyphicon glyphicon-search"></i>
+                                            Tìm kiếm
+                                        </button>
+                                    </div>
+                                </div>
+                            </form:form>
 
-                            </div>
-                        </form>
+
+                        </div>
                     </div>
                 </div>
 
@@ -525,6 +590,36 @@
     </div>
 </div>
 <!-- End Modal -->
+<script>
 
+    function assingmentBuilding(buildingId) {
+        $("#assingmentBuildingModal").modal()
+    }
+
+    $("#all-check-list-building").click(function () {
+        // check toàn bộ checkbox có name là staff
+        $("input[name='staffBuilding']").prop('checked', $(this).prop('checked'))
+    })
+
+    $("#btnAddAssingmentBuilding").click(function (e) {
+        e.preventDefault()
+        var data = {}
+        data['buildingId'] = $("#idBuilding").val()
+        // lấy ra những nhân viên được chọn
+        var staffs = $('#staffList').find('input[type="checkbox"]:checked').map(function () {
+            return $(this).parent().parent().find('input[type="hidden"]').val()
+        }).get()
+        console.log("XUan Manh check staffs", staffs);
+
+        data['staffs'] = staffs
+        console.log(data);
+    })
+
+    $('#btnSearchBuilding').click(function (e) {
+        e.preventDefault();
+        $('#listForm').submit()
+    })
+
+</script>
 </body>
 </html>

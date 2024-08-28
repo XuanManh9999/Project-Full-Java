@@ -1,6 +1,7 @@
 package com.javaweb.controller.admin;
 
 
+import com.javaweb.model.dto.SearchBuildingDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,8 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 
 public class BuildingController {
     @RequestMapping(value = "/admin/building-list", method = RequestMethod.GET)
-    public ModelAndView buildingList(HttpServletRequest request) {
+    public ModelAndView buildingList(@ModelAttribute SearchBuildingDTO searchBuildingDTO, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/building/list");
+        mav.addObject("modelSearch", searchBuildingDTO);
         return mav;
     }
 
@@ -25,4 +27,6 @@ public class BuildingController {
         mav.addObject("title", "Sửa | Thêm mới tòa nhà");
         return mav;
     }
+
+
 }
