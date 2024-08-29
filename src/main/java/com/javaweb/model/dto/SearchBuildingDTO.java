@@ -2,7 +2,6 @@ package com.javaweb.model.dto;
 
 import java.util.List;
 
-// &rentPriceFrom=&rentPriceTo=&managerName=&managerPhone=&staff=
 // create a java bean
 public class SearchBuildingDTO {
     private String name;

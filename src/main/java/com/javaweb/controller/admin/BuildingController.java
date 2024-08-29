@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller(value = "buildingControllerOfAdmin")
 
+
 public class BuildingController {
     @RequestMapping(value = "/admin/building-list", method = RequestMethod.GET)
     public ModelAndView buildingList(@ModelAttribute SearchBuildingDTO searchBuildingDTO, HttpServletRequest request) {
