@@ -1,5 +1,8 @@
 package com.javaweb.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +37,6 @@ public class UserEntity extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false))
     private List<RoleEntity> roles = new ArrayList<>();
-
-
-//    @OneToMany(mappedBy="staffs", fetch = FetchType.LAZY)
-//    private List<AssignmentBuildingEntity> assignmentBuildingEntities = new ArrayList<>();
-//
-//    @OneToMany(mappedBy="users", fetch = FetchType.LAZY)
-//    private List<UserRoleEntity> userRoleEntities = new ArrayList<>();
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -94,7 +90,8 @@ public class UserEntity extends BaseEntity {
     public void setEmail(String email) {
         this.email = email;
     }
-        @Override
+
+    @Override
     public Long getId() {
         return id;
     }
@@ -102,5 +99,41 @@ public class UserEntity extends BaseEntity {
     @Override
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "staff")
+    @Fetch(FetchMode.SUBSELECT)
+    private List<AssignMentCustomer> listAssignMentCustomer;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "userEntity")
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Transaction> transactions;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "userEntity")
+    @Fetch(FetchMode.SUBSELECT)
+    private List<AssigmmentBuilding> assigmmentBuildings;
+
+    public List<AssignMentCustomer> getListAssignMentCustomer() {
+        return listAssignMentCustomer;
+    }
+
+    public List<AssigmmentBuilding> getAssigmmentBuildings() {
+        return assigmmentBuildings;
+    }
+
+    public void setAssigmmentBuildings(List<AssigmmentBuilding> assigmmentBuildings) {
+        this.assigmmentBuildings = assigmmentBuildings;
+    }
+
+    public void setListAssignMentCustomer(List<AssignMentCustomer> listAssignMentCustomer) {
+        this.listAssignMentCustomer = listAssignMentCustomer;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 }
